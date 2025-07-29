@@ -1,4 +1,7 @@
-﻿using System;
+﻿using SchoolBLL;
+using SchoolDAL.Models;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,13 +22,16 @@ namespace SchoolApp
     /// </summary>
     public partial class TeachersWindow : Window
     {
+        public List<Teacher> Teachers { get; set; }
+
         public TeachersWindow()
         {
-            DataContext = this;
-            //bl = new bl;
-            //Teachers = bl.GetTeachers();
-            InitializeComponent();
+            InitializeComponent(); // חשוב! תמיד צריך להיות לפני השימוש ברכיבי XAML
+
+            TeacherBL teacherBL = new TeacherBL();
+            Teachers = teacherBL.getTeacher();
+
+            DataContext = this; // הגדרת ה־DataContext אחרי שמילאת את הנתונים
         }
-        //public List<Teacher> Teachers { get; set; }
     }
 }
